@@ -34,7 +34,6 @@ public class CardSimpleServiceImpl implements CardSimpleService {
 
     @Override
     public void deleteCardById(@Param("id") Long id) {
-        cardRepository.deleteCardById(id);
     }
 
 

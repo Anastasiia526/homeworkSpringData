@@ -16,6 +16,10 @@ public class CardController {
     @Autowired
     private CardSimpleService cardSimpleService;
 
+    public void setCardSimpleService(CardSimpleService cardSimpleService) {
+        this.cardSimpleService = cardSimpleService;
+    }
+
 
     @PostMapping(value = "/add")
     public String addCard(HttpServletRequest request) {

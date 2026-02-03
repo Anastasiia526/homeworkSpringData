@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="com.*"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <jpa:repositories base-package="com.persistence.dao.repositories" entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager"/>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="card"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <bean id="card1" class="com.model.Card">
+        <property name="Thema" value="Cityscape"/>
+        <property name="Type" value="Promotional"/>
+        <property name="Sent" value="true"/>
+        <property name="Country" value="France"/>
+        <property name="Year" value="1992"/>
+        <property name="Author" value="Jean Dubois"/>
+        <property name="Valuable" value="Collectible"/>
+    </bean>
+    <bean id="card2" class="com.model.Card">
+        <property name="Thema" value="Nature"/>
+        <property name="Type" value="Greeting"/>
+        <property name="Sent" value="false"/>
+        <property name="Country" value="Ukraine"/>
+        <property name="Year" value="1985"/>
+        <property name="Author" value="Oksana Kovalenko"/>
+        <property name="Valuable" value="Thematic"/>
+    </bean>
+    <bean id="card3" class="com.model.Card">
+        <property name="Thema" value="People"/>
+        <property name="Type" value="Normal"/>
+        <property name="Sent" value="true"/>
+        <property name="Country" value="Italy"/>
+        <property name="Year" value="2001"/>
+        <property name="Author" value="Marco Bellini"/>
+        <property name="Valuable" value="Historical"/>
+    </bean>
+    <bean id="card4" class="com.model.Card">
+        <property name="Thema" value="Religion"/>
+        <property name="Type" value="Normal"/>
+        <property name="Sent" value="false"/>
+        <property name="Country" value="Spain"/>
+        <property name="Year" value="1978"/>
+        <property name="Author" value="Unknown"/>
+        <property name="Valuable" value="Historical"/>
+    </bean>
+    <bean id="card" class="com.model.Card"/>
+</beans>

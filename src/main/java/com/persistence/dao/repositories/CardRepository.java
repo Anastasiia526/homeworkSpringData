@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -29,4 +30,5 @@ public interface CardRepository extends CrudRepository<Card, Long> {
 
     @Query(value = "DELETE FROM card WHERE id = :id", nativeQuery = true)
     void deleteCardById(@Param("id") Long id);
+
 }

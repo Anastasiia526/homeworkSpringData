@@ -6,10 +6,12 @@ import com.persistence.dao.repositories.CardRepository;
 import com.persistence.dao.services.interfaces.CardSimpleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -25,6 +27,14 @@ public class CardSimpleServiceImpl implements CardSimpleService {
     @Override
     public List<Card> findAll() {
         return Lists.newArrayList(cardRepository.findAll());
+    }
+
+    @Override
+    @CachePut(value = "empl", condition = "#result != null", key = "#result.id")
+    public Optional<Card> id(long id) throws InterruptedException {
+        cardRepository.findAll();
+        System.out.println("Getting employee from repo");
+        return cardRepository.findById(id);
     }
 
     @Override

@@ -94,6 +94,13 @@
     <input type="submit" value="Search"/>
 </form>
 
+<!-- SEARCH BY ID -->
+<h2>Search card by id</h2>
+<form method="post" action="${pageContext.request.contextPath}/card/findById">
+    <input type="text" name="id" placeholder="id"/>
+    <input type="submit" value="Search"/>
+</form>
+
 <!-- SEARCH BY YEAR AND SENT -->
 <h2>Search card by year and sent</h2>
 <form method="post" action="${pageContext.request.contextPath}/card/findCardByYearAndSent">

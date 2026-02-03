@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 @RequestMapping(value = "/card")
 public class CardController {
@@ -53,6 +56,18 @@ public class CardController {
         modelAndView.addObject("cards", cardSimpleService.findCardByType(type));
         modelAndView.setViewName("/search-results");
         return modelAndView;
+    }
+
+    @PostMapping("/findById")
+    public ModelAndView findId(@RequestParam ("id") Long id) throws InterruptedException {
+        ModelAndView mav = new ModelAndView("card");
+
+        cardSimpleService.id(id)
+                .ifPresent(card ->
+                        mav.addObject("cards", List.of(card))
+                );
+
+        return mav;
     }
 
     @PostMapping(value = "/findCardByYearAndSent")
